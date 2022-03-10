@@ -1,0 +1,206 @@
+<div class="container padding container_actions">
+  <div class="d-flex justify-content-between">
+    <div>
+      <button type="button" class="btn btn-outline-info" (click)="goBack()">
+        <span class="fa fa-arrow-left"></span>
+      </button>
+    </div>
+    <div>
+      <div class="row">
+        <!-- <div class="col col-12">
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            (click)="AddEntry()"
+          >
+            <span class="fa fa-plus"></span>
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-3">
+      <div class="container entry_section">
+        <form fxLayout="column" #f="ngForm">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Name"
+              type="text"
+              name="NAME"
+              [(ngModel)]="data.NAME"
+              required
+            /><mat-error>Name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Username"
+              type="text"
+              name="USERNAME"
+              [(ngModel)]="data.USERNAME"
+              required
+            /><mat-error>Username is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              name="PASSWORD"
+              [(ngModel)]="data.PASSWORD"
+              required
+            /><mat-error>Password is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email"
+              type="text"
+              name="EMAIL"
+              [(ngModel)]="data.EMAIL"
+              required
+            /><mat-error>Email is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Phone Number"
+              type="number"
+              name="PHONE_NUMBER"
+              [(ngModel)]="data.PHONE_NUMBER"
+              required
+            /><mat-error>Phone Number is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Intervention Time"
+              type="number"
+              name="INTERVENTION_TIME"
+              [(ngModel)]="data.INTERVENTION_TIME"
+              required
+            /><mat-error>Intervention Time is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Minimum Cost"
+              type="number"
+              name="MINIMUM_COST"
+              [(ngModel)]="data.MINIMUM_COST"
+              required
+            /><mat-error>Minimum Cost is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea
+              matTextareaAutosize
+              matInput
+              name="DESCRIPTION"
+              placeholder="Description"
+              rows="1"
+              [(ngModel)]="data.DESCRIPTION"
+            ></textarea
+            ><mat-error>Description is required</mat-error>
+          </mat-form-field>
+          <mat-checkbox
+            color="primary"
+            name="IS_VALIDATED"
+            disabled
+            [(ngModel)]="data.IS_VALIDATED"
+            >Is Validated</mat-checkbox
+          >
+          <mat-checkbox
+            color="primary"
+            name="IS_CHECKMARK"
+            disabled
+            [(ngModel)]="data.IS_CHECKMARK"
+            >Is Checkmark</mat-checkbox
+          >
+          <mat-checkbox
+            color="primary"
+            name="IS_ACTIVE"
+            disabled
+            [(ngModel)]="data.IS_ACTIVE"
+            >Is Active</mat-checkbox
+          >
+          <!-- <mat-checkbox
+            color="primary"
+            name="IS_BOOSTED"
+            disabled
+            [(ngModel)]="data.IS_BOOSTED"
+            >Is Boosted</mat-checkbox
+          > -->
+          <div class="row">
+            <div class="col col-md-6">
+              <button
+                [disabled]="!f.valid"
+                mat-raised-button
+                color="primary"
+                type="button"
+                class="btn btn-outline-secondary btn-block"
+                (click)="Edit(data)"
+              >
+                Save
+              </button>
+            </div>
+            <div class="col col-md-6">
+              <button
+                mat-raised-button
+                color="warn"
+                type="button"
+                class="btn btn-outline-danger btn-block"
+                (click)="Delete(data)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col col-lg-9">
+      <mat-tab-group dynamicHeight="true">
+        <mat-tab label="Work Area">
+          <div class="row">
+            <div class="col-11"></div>
+            <div class="col-1">
+              <i class="fa fa-plus fa-2x text-primary float-right"></i>
+            </div>
+          </div>
+          <div class="row entry_section_child">
+            <form fxLayout="column" #f="ngForm">
+              <mat-checkbox
+                *ngFor="let work_list of workList;let i = index"
+                color="primary"
+                name="work_list[i]"
+                [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="work_list.IS_TRUE"
+                (change)="changeCheckBox($event)"
+                >{{ work_list.My_Work_area.NAME }}</mat-checkbox
+              >
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <button
+                    [disabled]="!f.valid"
+                    mat-raised-button
+                    color="primary"
+                    type="button"
+                    class="btn btn-outline-secondary btn-block"
+                    (click)="onSaveCheckBox()"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
